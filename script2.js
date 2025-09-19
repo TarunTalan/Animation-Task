@@ -44,15 +44,18 @@ class Ball {
 }
 
 let ballArr = [];
-let numball = 400;
-for (let i = 0; i < numball; i++) {
+window.addEventListener('click', () => {
+    ballArr = [];
+    let numball = 400;
+    for(let i = 0; i<numball; i++) {
     let r = randomNum(10, 20);
     let dx = randomNum(-2, 2);
     let dy = randomNum(0, 2);
     let x = randomNum(r, innerWidth - r);
-    let y = randomNum(r + dy, innerHeight - 2*r);
+    let y = randomNum(r+dy, innerHeight - 2*r);
     ballArr.push(new Ball(x, y, dx, dy, r));
-};
+}
+});
 
 function animate() {
     requestAnimationFrame(animate);
