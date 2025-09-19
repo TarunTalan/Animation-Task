@@ -19,8 +19,8 @@ class Circle {
         this.dx = dx;
         this.dy = dy;
         this.r = r;
-        this.rMin = 2;
-        this.rMax = r;
+        this.rMin = r;
+        this.rMax = (r+2.3)*(12+(Math.random()));
     }
     makeCircle() {
         c.fillStyle = "blue";
@@ -43,7 +43,7 @@ class Circle {
             this.r += 1;
         }
         else {
-            if (this.r > this.rMin) {
+            if (this.r > 2) {
                 this.r -= 1;
             }
         }
@@ -51,10 +51,10 @@ class Circle {
     }
 }
 
-let numCircles = 100;
+let numCircles = 1000;
 const circleArr = [];
 for (let i = 0; i < numCircles; i++) {
-    let r = 20;
+    let r = 2*Math.random()+0.5;
     let x = Math.random() * (innerWidth - 2 * r) + r;
     let y = Math.random() * (innerHeight - 2 * r) + r;
     let dx = (Math.random() - 0.5) * 2;
