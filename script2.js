@@ -6,6 +6,7 @@ canvas.width = innerWidth;
 const gravity = 1;
 const friction = 0.95;
 
+
 class Ball {
     constructor(x, y, dx, dy, r) {
         this.x = x;
@@ -35,10 +36,26 @@ class Ball {
     }
 }
 
-let ball = new Ball(100,100,2,2,10);
+let ballArr = [];
+    let numball = 400;
+    for(let i = 0; i<numball; i++) {
+    let r = randomNum(10, 20);
+    let dx = randomNum(-2, 2);
+    let dy = randomNum(0, 2);
+    let x = randomNum(r, innerWidth - r);
+    let y = randomNum(r+dy, innerHeight - r);
+    ballArr.push(new Ball(x, y, dx, dy, r));
+};
+
 function animate() {
     requestAnimationFrame(animate);
     c.clearRect(0, 0, innerWidth, innerHeight);
-    ball.updateBall();
+    ballArr.forEach(ball => {
+        ball.updateBall();
+    });
 }
 animate();
+
+function randomNum(x, y) {
+    return (x + (y - x) * Math.random());
+}
