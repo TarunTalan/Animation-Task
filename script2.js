@@ -3,6 +3,8 @@ const c = canvas.getContext('2d');
 canvas.height = innerHeight;
 canvas.width = innerWidth;
 
+const gravity = 1;
+const friction = 0.95;
 
 class Ball {
     constructor(x, y, dx, dy, r) {
@@ -20,10 +22,12 @@ class Ball {
     }
     updateBall() {
         if ((this.x + this.r + this.dx > innerWidth) || (this.x <= this.r)) {
-            this.dx = -this.dx;
+            this.dx = -this.dx * friction;
         }
         if ((this.y + this.r + this.dy > innerHeight) || (this.y <= this.r)) {
-            this.dy = -this.dy;
+            this.dy = -this.dy * friction;
+        }else {
+            this.dy += gravity;
         }
         this.x += this.dx;
         this.y += this.dy;
