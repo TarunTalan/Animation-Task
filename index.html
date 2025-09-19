@@ -5,12 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animaton using canvas and js</title>
-    <link rel="stylesheet" href="style.css">
 </head>
+<style>
+    * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    align-items: centeer;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+.btns{
+    width: 30%;
+    height: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: end;
+}
+
+button{
+    background-color: #000000;
+    color: #ffffff;
+    border-radius: 20px;
+    padding: 10px 30px;
+    font-size: large;
+    cursor: pointer;
+    transition: all 150ms ease-in-out;
+}
+
+button:hover{
+    background-color: #fff;
+    color: #000;
+    border: 2px solid #000000;
+}
+</style>
 
 <body>
-    <canvas></canvas>
+    <div class="btns">
+    <a href="ani1.html"><button>Animation-1</button></a>
+    <a href="ani2.html"><button>Animation-2</button></a>
+    </div>
 </body>
-<script src="script.js"></script>
 
 </html>
