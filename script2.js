@@ -5,7 +5,13 @@ canvas.width = innerWidth;
 
 const gravity = 1;
 const friction = 0.95;
-
+const color = [
+    "rgba(0, 0, 255,0.7)",
+    "rgba(0, 255, 0,0.7)",
+    "rgba(255, 0, 0,0.7)",
+    "rgba(131, 150, 150, 0.7)",
+    "rgba(255, 255, 0, 0.7)"
+]
 
 class Ball {
     constructor(x, y, dx, dy, r) {
@@ -14,9 +20,10 @@ class Ball {
         this.dx = dx;
         this.dy = dy;
         this.r = r;
+        this.color = color[Math.floor(Math.random() * color.length)];
     }
     makeBall() {
-        c.fillStyle = "black";
+        c.fillStyle = this.color;
         c.beginPath();
         c.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
         c.fill();
@@ -27,7 +34,7 @@ class Ball {
         }
         if ((this.y + this.r + this.dy > innerHeight) || (this.y <= this.r)) {
             this.dy = -this.dy * friction;
-        }else {
+        } else {
             this.dy += gravity;
         }
         this.x += this.dx;
@@ -37,13 +44,13 @@ class Ball {
 }
 
 let ballArr = [];
-    let numball = 400;
-    for(let i = 0; i<numball; i++) {
+let numball = 400;
+for (let i = 0; i < numball; i++) {
     let r = randomNum(10, 20);
     let dx = randomNum(-2, 2);
     let dy = randomNum(0, 2);
     let x = randomNum(r, innerWidth - r);
-    let y = randomNum(r+dy, innerHeight - r);
+    let y = randomNum(r + dy, innerHeight - 2*r);
     ballArr.push(new Ball(x, y, dx, dy, r));
 };
 
