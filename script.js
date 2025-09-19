@@ -5,7 +5,12 @@ canvas.width = innerWidth;
 
 
 
-
+const mouse = {};
+window.addEventListener('mousemove', function (event) {
+    mouse.x = event.clientX;
+    mouse.y = event.clientY;
+    console.log(mouse);
+})
 
 class Circle {
     constructor(x, y, dx, dy, r) {
@@ -30,6 +35,11 @@ class Circle {
         }
         this.x += this.dx;
         this.y += this.dy;
+
+        if (Math.abs(mouse.x - this.x) < 40 &&
+            Math.abs(mouse.y - this.y) < 40 ) {
+            this.r += 1;
+        }
         this.makeCircle();
     }
 }
