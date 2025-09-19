@@ -19,6 +19,8 @@ class Circle {
         this.dx = dx;
         this.dy = dy;
         this.r = r;
+        this.rMin = 2;
+        this.rMax = r;
     }
     makeCircle() {
         c.fillStyle = "blue";
@@ -35,10 +37,15 @@ class Circle {
         }
         this.x += this.dx;
         this.y += this.dy;
-
         if (Math.abs(mouse.x - this.x) < 40 &&
-            Math.abs(mouse.y - this.y) < 40 ) {
+            Math.abs(mouse.y - this.y) < 40 &&
+            this.r < this.rMax) {
             this.r += 1;
+        }
+        else {
+            if (this.r > this.rMin) {
+                this.r -= 1;
+            }
         }
         this.makeCircle();
     }
