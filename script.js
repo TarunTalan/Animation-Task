@@ -34,16 +34,22 @@ class Circle {
     }
 }
 
-let x = Math.random() * innerWidth;
-let y = Math.random() * innerHeight;
-let dx = 2;
-let dy = 2;
-let r = 20;
-let  circle = new Circle(x,y,dx,dy,r);
+let numCircles = 100;
+const circleArr = [];
+for (let i = 0; i < numCircles; i++) {
+    let r = 20;
+    let x = Math.random() * (innerWidth - 2 * r) + r;
+    let y = Math.random() * (innerHeight - 2 * r) + r;
+    let dx = (Math.random() - 0.5) * 2;
+    let dy = (Math.random() - 0.5) * 2;
+    circleArr.push(new Circle(x, y, dx, dy, r));
+}
 
 function animate() {
     requestAnimationFrame(animate);
     c.clearRect(0, 0, innerWidth, innerHeight);
-    circle.updateCircle();
+    circleArr.forEach(circle => {
+        circle.updateCircle();
+    });
 }
 animate();
