@@ -16,14 +16,9 @@ let staggerFrames = 5;
 function animate() {
     requestAnimationFrame(animate);
     c.clearRect(0, 0, innerWidth, innerHeight);
-    c.drawImage(playerImage, FrameX * spriteWidth, FrameY * spriteHeight, spriteWidth, spriteHeight, 0, 0, spriteWidth, spriteHeight);
-    if (gameFrame % staggerFrames == 0) {
-        if (FrameX < 6) {
-            FrameX++;
-        } else {
-            FrameX = 0;
-        }
-    }
+    let position = Math.floor(gameFrame / staggerFrames) % 6;
+    FrameX = spriteWidth * position;
+    c.drawImage(playerImage, FrameX, FrameY * spriteHeight, spriteWidth, spriteHeight, 0, 0, spriteWidth, spriteHeight);
     gameFrame++;
 
 }
