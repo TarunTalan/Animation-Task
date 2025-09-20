@@ -8,8 +8,6 @@ const playerImage = new Image();
 playerImage.src = "shadow_dog.png";
 const spriteWidth = 575;
 const spriteHeight = 523;
-let FrameX = 0;
-let FrameY = 0;
 let gameFrame = 0;
 let staggerFrames = 5;
 const spriteAni = [];
@@ -20,8 +18,40 @@ const animationState = [
     },
     {
         name: 'jump',
+        frames: 7,
+    },
+    {
+        name: 'fall',
+        frames: 8,
+    },
+    {
+        name: 'run',
+        frames: 9,
+    },
+    {
+        name: 'dizzy',
+        frames: 11,
+    },
+    {
+        name: 'sit',
+        frames: 5,
+    },
+    {
+        name: 'roll',
         frames: 7
-    }
+    },
+    {
+        name: 'bite',
+        frames: 7
+    },
+    {
+        name: 'ko',
+        frames: 12,
+    },
+    {
+        name: 'getHit',
+        frames: 4,
+    },
 ];
 animationState.forEach((state,indx)=>{
     let frames = {
@@ -42,9 +72,10 @@ console.log(spriteAni);
 function animate() {
     requestAnimationFrame(animate);
     c.clearRect(0, 0, innerWidth, innerHeight);
-    let position = Math.floor(gameFrame / staggerFrames) % 6;
-    FrameX = spriteWidth * position;
-    c.drawImage(playerImage, FrameX, FrameY * spriteHeight, spriteWidth, spriteHeight, 0, 0, spriteWidth, spriteHeight);
+    let position = Math.floor(gameFrame / staggerFrames) % spriteAni['idle'].loc.length;
+    let FrameX = spriteWidth * position;
+    let FrameY = spriteAni['idle'].loc[position].y
+    c.drawImage(playerImage, FrameX, FrameY , spriteWidth, spriteHeight, 0, 0, spriteWidth, spriteHeight);
     gameFrame++;
 
 }
