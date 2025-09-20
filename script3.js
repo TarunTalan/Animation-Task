@@ -12,6 +12,32 @@ let FrameX = 0;
 let FrameY = 0;
 let gameFrame = 0;
 let staggerFrames = 5;
+const spriteAni = [];
+const animationState = [
+    {
+        name: 'idle',
+        frames: 7
+    },
+    {
+        name: 'jump',
+        frames: 7
+    }
+];
+animationState.forEach((state,indx)=>{
+    let frames = {
+        loc:[],
+    }
+    for (let i = 0; i < state.frames; i++) {
+        let positionX = i*spriteWidth;
+        let positionY = indx*spriteHeight;
+        frames.loc.push({
+            x: positionX,
+            y: positionY
+        })
+    }
+    spriteAni[state.name] = frames;
+})
+console.log(spriteAni);
 
 function animate() {
     requestAnimationFrame(animate);
