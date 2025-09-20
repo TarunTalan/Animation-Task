@@ -1,7 +1,13 @@
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext('2d');
 const canvas_width = canvas.width = 600;
-const canvas_height = canvas.height = 500;
+const canvas_height = canvas.height = 600;
+
+let playerState = 'idle';
+const dropdown = document.querySelector(".select-anime");
+dropdown.addEventListener('change', function(e){
+    playerState = e.target.value;
+})
 
 
 const playerImage = new Image();
@@ -22,7 +28,7 @@ const animationState = [
     },
     {
         name: 'fall',
-        frames: 8,
+        frames: 7,
     },
     {
         name: 'run',
@@ -72,9 +78,9 @@ console.log(spriteAni);
 function animate() {
     requestAnimationFrame(animate);
     c.clearRect(0, 0, innerWidth, innerHeight);
-    let position = Math.floor(gameFrame / staggerFrames) % spriteAni['idle'].loc.length;
+    let position = Math.floor(gameFrame / staggerFrames) % spriteAni[playerState].loc.length;
     let FrameX = spriteWidth * position;
-    let FrameY = spriteAni['idle'].loc[position].y
+    let FrameY = spriteAni[playerState].loc[position].y
     c.drawImage(playerImage, FrameX, FrameY , spriteWidth, spriteHeight, 0, 0, spriteWidth, spriteHeight);
     gameFrame++;
 
